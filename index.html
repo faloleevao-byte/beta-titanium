@@ -46,6 +46,11 @@ document.getElementById('f').addEventListener('submit',async function(e){
     document.activeElement&&document.activeElement.blur();
     document.querySelector('meta[name=viewport]').setAttribute('content','width=device-width,initial-scale=1,maximum-scale=1');
     document.open();document.write(html);document.close();
+    // iPhone не сбрасывает увеличение после подмены страницы: сбрасываем вручную
+    var vm=document.querySelector('meta[name=viewport]');
+    if(vm){vm.setAttribute('content','width=device-width,initial-scale=1,maximum-scale=1');
+      setTimeout(function(){vm.setAttribute('content','width=device-width,initial-scale=1')},600);}
+    window.scrollTo(0,0);
   }catch(err){m.textContent='не тот пароль';b.disabled=false;}
 });
 </script></body></html>
